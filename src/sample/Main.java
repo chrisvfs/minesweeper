@@ -14,13 +14,9 @@ import javafx.scene.text.*;
 
 public class Main extends Application {
 
-    public Stage primaryStage;
+    private static Stage primaryStage;
 
-//    public void changeScene(Scene scene){
-//
-//    }
-
-    public Scene setStartScene() throws Exception {
+    public static void setStartScene() {
         GridPane gp = new GridPane();
         gp.setPadding(new Insets(50,50,50,50));
         gp.setVgap(10);
@@ -42,12 +38,12 @@ public class Main extends Application {
         gp.add(btnGo,0,3,2,1);
 
         btnGo.setOnAction(value -> {
-             primaryStage.setScene(setUpMineSweeper(Integer.parseInt(tfRows.getText()),Integer.parseInt(tfColumns.getText())));
+            primaryStage.setScene(setUpMineSweeper(Integer.parseInt(tfRows.getText()),Integer.parseInt(tfColumns.getText())));
         });
-        return new Scene(gp, 300, 275);
+        primaryStage.setScene(new Scene(gp, 300, 275));
     }
 
-    private Scene setUpMineSweeper (int x, int y)
+    private static Scene setUpMineSweeper (int x, int y)
     {
         //int mines = 5;
         Board gpBoard = new Board(x,y);
@@ -57,18 +53,16 @@ public class Main extends Application {
 
     @Override
     public void start(Stage ps) throws Exception{
-        // Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+
+
         primaryStage = ps;
         primaryStage.setTitle("Minesweeper");
         GridPane gp = new GridPane();
 
         // Set Start Screen
-        Scene mainScene = setStartScene();
-        primaryStage.setScene(mainScene);
+        setStartScene();
+
         primaryStage.show();
-
-
-
     }
 
 

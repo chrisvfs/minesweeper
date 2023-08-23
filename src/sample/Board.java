@@ -23,7 +23,9 @@ public class Board extends GridPane
 
                 Square sq = new Square(r,c);
                 sq.setOnAction(value-> {
-                    sq.checkSquare();
+                    if (sq.checkSquare()) {
+                        Main.setStartScene();
+                    }
                 });
                 this.add(sq,r,c);
             }

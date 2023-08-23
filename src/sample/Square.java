@@ -26,7 +26,7 @@ public class Square extends Button {
     }
 
 
-    public void checkSquare(){
+    public boolean checkSquare(){
         checked = true;
         super.setDisabled(true);
         if(isMine==true)
@@ -40,6 +40,7 @@ public class Square extends Button {
             if (surroundingMines > 0) { super.setText(Integer.toString(surroundingMines));}
             else { super.setText("");}
         }
+        return isMine;
     }
 
     public void setMine(){
