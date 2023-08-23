@@ -43,6 +43,15 @@ public class Square extends Button {
         return isMine;
     }
 
+    public int autoCheck()
+    {
+        super.setDisabled(true);
+        checked = true;
+        if (surroundingMines > 0) { super.setText(Integer.toString(surroundingMines));}
+        else { super.setText("");}
+        return surroundingMines;
+    }
+
     public void setMine(){
         isMine = true;
     }

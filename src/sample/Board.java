@@ -26,6 +26,13 @@ public class Board extends GridPane
                     if (sq.checkSquare()) {
                         Main.setStartScene();
                     }
+                    else
+                    {
+                        if(sq.surroundingMines == 0)
+                        {
+                            autoChecker(sq.posx,sq.posy);
+                        }
+                    }
                 });
                 this.add(sq,r,c);
             }
@@ -59,6 +66,27 @@ public class Board extends GridPane
             {
                 if(x+i >= 0 && x+i < rows && y+j >= 0 && y+j < columns && !(i == 0 && j == 0))
                 {
+                    squares[x+i][y+j].surroundingMines++;
+                }
+            }
+        }
+    }
+
+    public void autoChecker(int x, int y)
+    {
+        for(int i = -1; i<2; i++)
+        {
+            for(int j = -1; j<2; j++)
+            {
+                if(x+i >= 0 && x+i < rows && y+j >= 0 && y+j < columns && !(i == 0 && j == 0))
+                {
+                    if(squares[x+i][y+j].checked == false)
+                    {
+                        if(squares[x+i][y+j].autoCheck() == 0)
+                        {
+                            autoChecker(x+i,y+j);
+                        }
+                    }
                     squares[x+i][y+j].surroundingMines++;
                 }
             }
