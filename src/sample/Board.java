@@ -46,9 +46,16 @@ public class Board extends GridPane
                     }
                     else if (value.getButton() == MouseButton.SECONDARY)
                     {
-                        if(sq.setFlag()) {flagged++;}
-                        else{flagged--;}
-                        checkWon();
+                        // Flagging only available when board is not checked
+                        if(!sq.checked)
+                        {
+                            if (sq.setFlag()) {
+                                flagged++;
+                            } else {
+                                flagged--;
+                            }
+                            checkWon();
+                        }
                     }
                 });
                 this.add(sq,r,c);
